@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import Cart from './components/firist-project';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';

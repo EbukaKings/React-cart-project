@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-function NavBar() {
+function NavBar(props) {
+    const [cart,addItemToCart] = useState([]);
+
+    
+
+    useEffect(() => {
+      
+        const cartFromLocal = localStorage.getItem("cart");
+        if(cartFromLocal != null){
+            addItemToCart(JSON.parse(cartFromLocal));
+
+        }
+    }, []);
     return (
-        <nav className="navbar navbar-expand-sm bg-primary">
+        <nav className="navbar navbar-expand-sm bg-primary" 
+        style={{position:"fixed",top:"0px",zIndex:'1',width:"100%"}}>
             <div className="container-fluid">
                 <a className="navbar-brand" href="#">
                     LOGO
@@ -28,7 +41,7 @@ function NavBar() {
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" href="#">Cart
-                            <span className="badge bg-danger">1</span>
+                            <span className="badge bg-danger">{props.cart.length}</span>
                         </a>
                     </li>
                 </ul>

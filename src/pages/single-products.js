@@ -5,8 +5,6 @@ function SingleProduct(props) {
     const location = useLocation();
     const product = location.state.state;
     
-
-    
     return (
         <div>
             <NavBar/>

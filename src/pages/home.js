@@ -4,9 +4,23 @@ import { Link } from "react-router-dom";
 
 function Home() {
     const [products, setProducts] = useState([]);
+    const [cart,addItemToCart] = useState([]);
 
     useEffect(() => {
+
         fetchProducts();
+        const cartFromLocal = localStorage.getItem("cart");
+        console.log("local=======")
+        console.log(cartFromLocal);
+        
+        
+        if(cartFromLocal != null){
+            addItemToCart(JSON.parse(cartFromLocal));
+            
+
+        }
+        console.log("cart=======")
+        console.log(cart);
     }, []);
 
     function fetchProducts() {
@@ -20,17 +34,29 @@ function Home() {
             });
     }
 
+    function addToCart(item){
+        console.log(cart);
+        addItemToCart([...cart, item] );
+        
+        localStorage.setItem("cart",JSON.stringify(cart));
+
+        //useEffect(()=>{});
+        //window.location.reload();
+        
+
+    }
+
     return (
         <div>
-            <NavBar />
-            <div className="container-fluid mt-3">
+            <NavBar cart={cart} />
+            <div className="container-fluid mt-5">
                 <div className="row">
                     {products.map((product) => (
                         <div className="col-md-3" key={product.id}>
-                            <Link
+                            {/* <Link
                                 to="/product"
                                 state={{ state: product }}
-                            >
+                            > */}
                                 <div className="card shadow">
                                     <img
                                         src={product.thumbnail}
@@ -44,12 +70,12 @@ function Home() {
                                             <br />
                                             <strike>${product.originalPrice}</strike>
                                         </p>
-                                        <button className="btn btn-success">
+                                        <button className="btn btn-success" onClick={()=>addToCart(product)}>
                                             Add to Cart
                                         </button>
                                     </div>
                                 </div>
-                            </Link>
+                            {/* </Link> */}
                         </div>
                     ))}
                 </div>

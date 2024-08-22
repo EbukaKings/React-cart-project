@@ -30,33 +30,94 @@ function Carts() {
             <h1 className='added-products'>Added Products</h1>
             </div>
             
-            <div className="container-fluid mt-5">
+            <div className="checkout-cointainer">
                 <div className="row">
                     {cart.map((item, index) => (
-                        <div className="col-md-3" key={item.id}>
-                            {/* <Link
-                                to="/product"
-                                state={{ state: product }}
-                            > */}
-                                <div className="card shadow">
-                                    <img
-                                        src={item.thumbnail}
-                                        className="card-img-top"
-                                        alt={item.title}
-                                    />
-                                    <div className="card-body">
-                                        <h5 className="card-title">{item.title}</h5>
-                                        <p className="card-text">
-                                            <strong>${item.price}</strong>
-                                            <br />
-                                            <strike>${item.originalPrice}</strike>
-                                        </p>
-                                        
-                                    </div>
+                        <div className='checkout-cointainer'>
+                        <div className="checkout-product">
+                        <div>
+                          <h2>Delivery date: Wednesday, July 31</h2>
+                        </div>
+                        <div className="item-payment-container">
+                          <div className="cart-container-item">
+                            <div className="item-details-container">
+                              <div>
+                                <img
+                                  className="cart-img"
+                                  src={item.thumbnail}
+                                  alt="Black and Gray Athletic Cotton Socks"
+                                />
+                              </div>
+                              <div className="product-info-container">
+                                <div className="product-info-container-description">
+                                  <h4>{item.title}</h4>
                                 </div>
-                            {/* </Link> */}
+                                <div>
+                                  <p>${item.price}</p>
+                                </div>
+                                <div>
+                                  <p>Quantity: 2</p>
+                                  <button>Update</button>
+                                  <button>Delete</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="delivery-choice-container">
+                            <div className="delivery-choice-container-description">
+                              <p>Choose a delivery option:</p>
+                              <div>
+                                <input
+                                  type="radio"
+                                  name="choice-delivery-radio"
+                                  id="delivery-thursday"
+                                />
+                                <label htmlFor="delivery-thursday">
+                                  Thursday, August 8 <p>FREE Shipping</p>
+                                </label>
+                              </div>
+                              <div>
+                                <input
+                                  type="radio"
+                                  name="choice-delivery-radio"
+                                  id="delivery-friday"
+                                />
+                                <label htmlFor="delivery-friday">
+                                  Friday, August 2 <p>$4.99 - Shipping</p>
+                                </label>
+                              </div>
+                              <div>
+                                <input
+                                  type="radio"
+                                  name="choice-delivery-radio"
+                                  id="delivery-wednesday"
+                                />
+                                <label htmlFor="delivery-wednesday">
+                                  Wednesday, July 31 <p>$9.99 - Shipping</p>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                         </div>
                     ))}
+                </div>
+                <div className='payment-container1'>
+                <div className="payment-container">
+                            <p>items(0):</p>
+                            <p>Shipping & handling:</p>
+                            <p>Total before tax:</p>
+                            <p>Estimated tax (10%):</p>
+                            
+                            <h1>Order total:</h1>
+                            <h3>Use PayPal <button></button></h3>
+                            <button>
+                                <h5>place your order</h5>
+                            </button>
+                            
+                
+                      </div>
                 </div>
             </div>
 

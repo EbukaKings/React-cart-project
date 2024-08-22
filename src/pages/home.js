@@ -1,6 +1,6 @@
 import NavBar from "../components/NavBar";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 function Home() {
     const [products, setProducts] = useState([]);
@@ -12,6 +12,7 @@ function Home() {
         const cartFromLocal = localStorage.getItem("cart");
         console.log("local=======")
         console.log(cartFromLocal);
+        // localStorage.removeItem('cart');
         
         
         if(cartFromLocal != null){
@@ -39,7 +40,8 @@ function Home() {
         addItemToCart([...cart, item] );
         
         localStorage.setItem("cart",JSON.stringify(cart));
-
+        // localStorage.setItem('cart', JSON.stringify(cart));
+        
         //useEffect(()=>{});
         //window.location.reload();
         

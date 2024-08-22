@@ -9,6 +9,8 @@ import Register from './pages/register';
 import ContactUs from './pages/contactus';
 import SingleProduct from './pages/single-products';
 import Dashboard from './pages/dashboard';
+import Carts from './pages/carts';
+
 
 function App() {
   return (
@@ -20,6 +22,9 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path='/register' element={<Register/>}></Route>
         <Route path='/contact-us' element={<ContactUs/>}></Route>
+        <Route path='/carts' element={<Carts/>}></Route>
+        
+
 
         <Route path='/' element={<Home/>} />
         <Route path='/product' element={<SingleProduct/>} />

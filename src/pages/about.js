@@ -1,6 +1,7 @@
 import React from "react";
 
 function About() {
+    <About />
     return (
         <div>
         <nav className="navbar navbar-expand-sm bg-primary">

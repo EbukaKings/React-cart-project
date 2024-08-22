@@ -40,7 +40,7 @@ function NavBar(props) {
                         <a className="nav-link" href="/login">Login</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Cart
+                        <a className="nav-link" href="/carts">Cart
                             <span className="badge bg-danger">{props.cart.length}</span>
                         </a>
                     </li>

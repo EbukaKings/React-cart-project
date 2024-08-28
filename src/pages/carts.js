@@ -4,6 +4,8 @@ import "./cart.css"
 
 function Carts() {
     const [cart, setCart] = useState([]);
+    const [total,setTotal] = useState(0);
+
 
     useEffect(() => {
         // Load cart items from localStorage
@@ -11,6 +13,18 @@ function Carts() {
         if (cartFromLocal) {
             setCart(JSON.parse(cartFromLocal));
         }
+        console.log(cart);
+        
+        for(var i =0; i < cart.length; i++){
+          //setTotal((total+cart[i].price));
+         /// console.log(cart[i].price)
+         // var oldTodal = total;
+         // var newTotal = oldTodal + cart[i].price;
+          //setTotal(newTotal);
+         // console(newTotal);
+
+        }
+       // setTotal(1+100)
     }, []); // Empty dependency array means this runs once on mount
 
     function addItemToCart(item) {
@@ -22,6 +36,21 @@ function Carts() {
         localStorage.setItem("cart", JSON.stringify(updatedCart));
         // localStorage.removeItem('cart');
     }
+    // function removeFromCart(productId)  {
+    //   setCart(cart.filter(item => item.id !== productId));
+    // };
+    function removeFromCart2(product) {
+      // Assuming cart is an array of products
+      const updatedCart = cart.filter(item => item !== product);
+      
+      // Update the cart state
+      setCart(updatedCart);
+      
+      // Save the updated cart to localStorage
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+    }
+    
+  
 
     return (
         <div>
@@ -33,6 +62,7 @@ function Carts() {
             <div className="checkout-cointainer">
                 <div className="row">
                     {cart.map((item, index) => (
+                     
                         <div className='checkout-cointainer'>
                         <div className="checkout-product">
                         <div>
@@ -56,9 +86,9 @@ function Carts() {
                                   <p>${item.price}</p>
                                 </div>
                                 <div>
-                                  <p>Quantity: 2</p>
+                                  <p>Quantity: 1</p>
                                   <button>Update</button>
-                                  <button>Delete</button>
+                                  <button onClick={() => removeFromCart2(item)}>Delete</button>
                                 </div>
                               </div>
                             </div>
@@ -93,7 +123,7 @@ function Carts() {
                                   id="delivery-wednesday"
                                 />
                                 <label htmlFor="delivery-wednesday">
-                                  Wednesday, July 31 <p>$9.99 - Shipping</p>
+                                  Wednesday, July 3 <p>$9.99 - Shipping</p>
                                 </label>
                               </div>
                             </div>
@@ -110,7 +140,7 @@ function Carts() {
                             <p>Total before tax:</p>
                             <p>Estimated tax (10%):</p>
                             
-                            <h1>Order total:</h1>
+                            <h1>Order total: {total}</h1>
                             <h3>Use PayPal <button></button></h3>
                             <button>
                                 <h5>place your order</h5>

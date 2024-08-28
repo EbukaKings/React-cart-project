@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 function Home() {
     const [products, setProducts] = useState([]);
     const [cart,addItemToCart] = useState([]);
+   
 
     useEffect(() => {
 
@@ -12,6 +13,7 @@ function Home() {
         const cartFromLocal = localStorage.getItem("cart");
         console.log("local=======")
         console.log(cartFromLocal);
+
         // localStorage.removeItem('cart');
         
         
@@ -44,8 +46,6 @@ function Home() {
         
         //useEffect(()=>{});
         //window.location.reload();
-        
-
     }
 
     return (

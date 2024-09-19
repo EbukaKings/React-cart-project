@@ -28,7 +28,7 @@ function Dashboard() {
             <p>Your last login IP: </p>
 
             <div>
-                <p><h4>Portflio Overview</h4></p>
+                <p><h4>Portflio Overviewz</h4></p>
             </div>
             
         </div>

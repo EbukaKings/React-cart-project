@@ -21,10 +21,8 @@ function Home() {
         fetch("https://dummyjson.com/products")
             .then((res) => res.json())
             .then((data) => {
-                if (Array.isArray(data)) {
-                    setProducts(data); // Directly set the array if data is an array
-                } else if (data.products && Array.isArray(data.products)) {
-                    setProducts(data.products); // Set products if wrapped in an object
+                if (data.products && Array.isArray(data.products)) {
+                    setProducts(data.products);
                 } else {
                     console.error("Invalid products data:", data);
                     setProducts([]);
@@ -38,22 +36,23 @@ function Home() {
 
     function addToCart(item) {
         setCart(prevCart => {
+            // Check if the item already exists in the cart
+            const existingItem = prevCart.find(cartItem => cartItem.id === item.id);
+            if (existingItem) {
+                return prevCart; // Return previous cart if item already exists
+            }
             const updatedCart = [...prevCart, item];
-            localStorage.setItem('cart', JSON.stringify(updatedCart));
-            return updatedCart;
+            return updatedCart; // Update state with new cart
         });
     }
 
-    
     return (
         <div>
-            <NavBar cart={cart} />
-            <div className="container-fluid mt-5">
+            <NavBar cart={cart.length} />
+            <div style={{ marginTop: '80px' }} className="container-fluid mt-10">
                 <div className="row">
                     {products.length > 0 ? (
                         products.map((product) => (
-                            
-
                             <div className="col-md-3" key={product.id}>
                                 <div className="card shadow">
                                     <img

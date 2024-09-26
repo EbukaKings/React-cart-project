@@ -2,61 +2,39 @@ import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 import "./cart.css"
 import { PaystackButton } from 'react-paystack';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Carts() {
+
+  const navigate = useNavigate();
+  const handleCheckout = () => {
+    navigate('/paystack', { state: { totalAmount: total } });
+};
     const [cart, setCart] = useState([]);
     const [total,setTotal] = useState(0);
 
 
-    const publicKey = "pk_test_d98edce4c83a28dffc917252c37b79d865b9e45b";
-
-    const [ email, setEmail] = useState("");
-    const [ amount, setAmount] = useState("");
-    const [ name, setName] = useState("");
-    const [ phone, setPhone] = useState("");
-
-    const componentProps = {
-      email,
-      amount: amount * 100,
-      metadata: {
-        name,
-        phone,
-      },
-      publicKey,
-      text: "Cheeckout",
-      onSuccess: () =>
-        alert("Checkout successful"),
-      onclose: () => alert("Checkout unsuccessful"),
-    }
-
-
-    useEffect(() => {
-        // Load cart items from localStorage
-        const cartFromLocal = localStorage.getItem("cart");
-        if (cartFromLocal) {
-            setCart(JSON.parse(cartFromLocal));
-        }
-        console.log(cart);
-        
-        for(var i =0; i < cart.length; i++){
-          setTotal((total+cart[i].price));
-          
-        //  / console.log(cart[i].price)
-        //  var oldTodal = total;
-        //  var newTotal = oldTodal + cart[i].price;
-        //   setTotal(newTotal);
-        //  console(newTotal);
-        console(total);
-        }
     
-       // setTotal(1+100)
-    }, []); 
-    // Empty dependency array means this runs once on mount
     useEffect(() => {
-      // Calculate total when cart changes
-      const totalAmount = cart.reduce((sum, item) => sum + item.price, 0);
-      setTotal(totalAmount);
-  }, [cart]);
+      // Load cart items from localStorage
+      const cartFromLocal = localStorage.getItem("cart");
+      if (cartFromLocal) {
+          const parsedCart = JSON.parse(cartFromLocal);
+          setCart(parsedCart);
+          calculateTotal(parsedCart);
+      }
+  }, []);
+    // Empty dependency array means this runs once on mount
+  //   useEffect(() => {
+  //     // Calculate total when cart changes
+  //     const totalAmount = cart.reduce((sum, item) => sum + item.price, 0);
+  //     setTotal(totalAmount);
+  // }, [cart]);
+  const calculateTotal = (cartItems) => {
+    const totalAmount = cartItems.reduce((sum, item) => sum + item.price, 0);
+    setTotal(totalAmount);
+};
 
     function addItemToCart(item) {
         // Add item to state
@@ -71,14 +49,10 @@ function Carts() {
     //   setCart(cart.filter(item => item.id !== productId));
     // };
     function removeFromCart2(product) {
-      // Assuming cart is an array of products
-      const updatedCart = cart.filter(item => item !== product);
-      
-      // Update the cart state
-      setCart(updatedCart);
-      
-      // Save the updated cart to localStorage
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
+        const updatedCart = cart.filter(item => item !== product);
+        setCart(updatedCart);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        calculateTotal(updatedCart); // Recalculate total after removal
     }
     
   
@@ -86,15 +60,15 @@ function Carts() {
     return (
         <div>
             <NavBar cart={cart} />
-            <div>
+            <div style={{ marginTop: '80px' }}>
             <h1 className='added-products'>Added Products</h1>
             </div>
             
             <div className="checkout-cointainer">
                 <div className="row">
-                    {cart.map((item, index) => (
+                    {cart.map((item, id) => (
                      
-                        <div className='checkout-cointainer'>
+                        <div key={item.id} className='checkout-cointainer'>
                         <div className="checkout-product">
                         <div>
                           <h2>Delivery date: Wednesday, July 31</h2>
@@ -172,19 +146,22 @@ function Carts() {
                             <p>Estimated tax (10%):</p>
                             
                             <h1>Order total:() ${total}</h1>
-                            <h3>Use PayPal <button></button></h3>
-                            <button>
-                                <h5>place your order</h5>
+                           
+                            <div className='paypal-div'>
+                            <button className='paypal-button'>
+                                <h5>PayPal</h5>
                             </button>
-                            
-                
+                            </div>
+                            <Link to="/paystack">
+                            <div className='paystack-div'>
+                            <button onClick={handleCheckout} className='paystack-button'>
+                                <h5>paystack</h5>
+                            </button>
+                            </div>
+                            </Link>
                       </div>
 
-                      <input type='email' placeholder='Email' className='form-control' value={email} onChange={(e) => setEmail(e.target.value)}/>
-                      <input type='number' placeholder='Amount' className='form-control' value={amount} onChange={(e) => setAmount(e.target.value)}/>
-                      <input type='text' placeholder='Name' className='form-control' value={phone} onChange={(e) => setName(e.target.value)}/>
-                      <input type='number' placeholder='phone number' className='form-control' value={phone} onChange={(e) => setPhone(e.target.value)}/>
-                      <PaystackButton className='btn btn-primary mt-3' {...componentProps}/>
+                      
                 </div>
 
             </div>

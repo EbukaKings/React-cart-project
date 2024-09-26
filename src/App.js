@@ -10,6 +10,8 @@ import ContactUs from './pages/contactus';
 import SingleProduct from './pages/single-products';
 import Dashboard from './pages/dashboard';
 import Carts from './pages/carts';
+import Paystack from './pages/paystack';
+
 
 
 function App() {
@@ -28,6 +30,9 @@ function App() {
 
         <Route path='/' element={<Home/>} />
         <Route path='/product' element={<SingleProduct/>} />
+        <Route path="/paystack" element={<Paystack />} />
+
+
 
       </Routes>
     </BrowserRouter>

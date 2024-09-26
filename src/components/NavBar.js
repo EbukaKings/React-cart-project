@@ -23,13 +23,13 @@ function NavBar(props) {
 
                 </a>
 
-                <div className=".search-bar-container">
+                {/* <div className=".search-bar-container">
                     <input className="search-bar" placeholder="Search"/>
                     <button className="search-button">
                     <img className="search-icon" src="/images/search-icon.png"/>
                     </button>
                     
-                </div>
+                </div> */}
 
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarmenu">
                     <span className="navbar-toggler-icon"></span>

@@ -15,7 +15,7 @@ function NavBar(props) {
     }, []);
 
     return (
-        <nav className="navbar navbar-expand-lg bg-warnin fixed-top" 
+        <nav className="navbar navbar-expand-lg bg-warning fixed-top" 
              style={{ position: "fixed", top: "0px", zIndex: '1', width: "100%" }}>
             <div className="container-fluid">
                 <a className="navbar-brand" href="#">

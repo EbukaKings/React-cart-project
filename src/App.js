@@ -7,6 +7,7 @@ import About from "./pages/about";
 import Login from './pages/login'; // Ensure the correct relative path
 import Register from './pages/register';
 import ContactUs from './pages/contactus';
+import Services from './pages/services';
 import SingleProduct from './pages/single-products';
 import Dashboard from './pages/dashboard';
 import Carts from './pages/carts';
@@ -23,6 +24,7 @@ function App() {
         <Route path='/login' element={<Login/>}></Route>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path='/register' element={<Register/>}></Route>
+        <Route path='/services' element={<Services/>}></Route>
         <Route path='/contact-us' element={<ContactUs/>}></Route>
         <Route path='/carts' element={<Carts/>}></Route>
         

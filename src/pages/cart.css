@@ -15,7 +15,15 @@
     flex-direction: row;
 }
 
-
+.service-header {
+    margin-top: 20%;
+}
+.about-header {
+    margin-top: 15%;
+}
+.contact-header {
+    margin-top: 15%;
+}
 .Checkout-amazon-image {
     height: 50px;
 }

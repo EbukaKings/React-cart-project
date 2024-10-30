@@ -1,46 +1,16 @@
 import React from "react";
+import NavBar from "../components/NavBar";
 
 function About() {
     <About />
     return (
         <div>
-        <nav className="navbar navbar-expand-sm bg-primary">
-            <div className="container-fluid">
-                <a className="navbar-brand" href="#">
-                    LOGO
-                </a>
-                <ul className="navbar-nav">
-                    <li className="nav-item">
-                        <a className="nav-link" href="#">Home</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#">About</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#">Services</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#">Contact Us</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#">Register</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#">Login</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#">Cart
-                            <span className="badge bg-danger">1</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        <NavBar />
 
-        <h1>About</h1>
+        
 
 
-        <h1>About us</h1>
+        <h1 className="about-header">About us</h1>
         <p>Express Broker is a privately-held investment management firm that was founded in 2016 by the Digital Currency Group. As a mutual fund company, Express Broker is a trusted expert on digital currency investing. Express Broker provides a variety of services, including money distribution and investment consulting, as well as wealth and management.
 
             We've developed a crypto market trading method that works well with just three major cryptocurrencies: Bitcoin, Ethereum, and Litecoin. We specialize in these cryptos to reduce investment risk and allow our users and/or customers to benefit as much as possible by using our experience and services.

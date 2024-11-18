@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import './navbar.css'
 
 function NavBar(props) {
     const [cart, addItemToCart] = useState([]);
@@ -16,7 +17,7 @@ function NavBar(props) {
 
     return (
         <nav className="navbar navbar-expand-lg bg-warning fixed-top" 
-             style={{ position: "fixed", top: "0px", zIndex: '1', width: "100%" }}>
+             style={{ position: "fixed", top: "0px", zIndex: '1', width: "100%", height: "60px" }}>
             <div className="container-fluid">
                 <a className="navbar-brand" href="#">
                 <img className="amazon-logo" src="/images/amazon-logo.png" alt="Amazon Logo"/>

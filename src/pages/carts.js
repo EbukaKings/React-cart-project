@@ -9,7 +9,8 @@ function Carts() {
 
   const navigate = useNavigate();
   const handleCheckout = () => {
-    navigate('/paystack', { state: { totalAmount: total } });
+    navigate('/paystack', { state: { totalAmount: total }, replace: true });
+
 };
     const [cart, setCart] = useState([]);
     const [total,setTotal] = useState(0);
@@ -60,115 +61,108 @@ function Carts() {
     return (
         <div>
             <NavBar cart={cart} />
+            <div className='main'>
             <div style={{ marginTop: '80px' }}>
-            <h1 className='added-products'>Added Products</h1>
+            <div className='page-title'>Review your order </div> 
             </div>
             
-            <div className="checkout-cointainer">
-                <div className="row">
+            <div className="checkout-grid">
+                <div className="order-summary">
+                  
                     {cart.map((item, id) => (
                      
-                        <div key={item.id} className='checkout-cointainer'>
+                        <div key={item.id} className='cart-item-container'>
                         <div className="checkout-product">
-                        <div>
-                          <h2>Delivery date: Wednesday, July 31</h2>
+                        <div className='delivery-date'>
+                          Delivery date: Wednesday, July 31
                         </div>
-                        <div className="item-payment-container">
-                          <div className="cart-container-item">
-                            <div className="item-details-container">
-                              <div>
-                                <img
-                                  className="cart-img"
+                        <div className="cart-item-details-grid">
+                        <img
+                                  className="product-image"
                                   src={item.images}
                                   alt="Black and Gray Athletic Cotton Socks"
                                 />
-                              </div>
-                              <div className="product-info-container">
-                                <div className="product-info-container-description">
+                          <div className="cart-item-details">
+                              
+                                <div className="product-name">
                                   <h4>{item.name}</h4>
                                 </div>
-                                <div>
-                                  <p>${item.price}</p>
+                                <div className='product-price'>
+                                  ${item.price}
                                 </div>
-                                <div>
-                                  <p>Quantity: 1</p>
-                                  <button>Update</button>
-                                  <button onClick={() => removeFromCart2(item)}>Delete</button>
+                                <div className='product-quantity'>
+                                  <span>Quantity: <span class="quantity-label">{}</span></span>
+                                  <span class="update-quantity-link link-primary">
+                                  Update
+                                  </span>
+                                  <span className='delete-quantity-link link-primary' onClick={() => removeFromCart2(item)}>
+                                  Delete
+                                  </span>
                                 </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="delivery-choice-container">
-                            <div className="delivery-choice-container-description">
-                              <p>Choose a delivery option:</p>
-                              <div>
-                                <input
-                                  type="radio"
-                                  name="choice-delivery-radio"
-                                  id="delivery-thursday"
-                                />
-                                <label htmlFor="delivery-thursday">
-                                  Thursday, August 8 <p>FREE Shipping</p>
-                                </label>
-                              </div>
-                              <div>
-                                <input
-                                  type="radio"
-                                  name="choice-delivery-radio"
-                                  id="delivery-friday"
-                                />
-                                <label htmlFor="delivery-friday">
-                                  Friday, August 2 <p>$4.99 - Shipping</p>
-                                </label>
-                              </div>
-                              <div>
-                                <input
-                                  type="radio"
-                                  name="choice-delivery-radio"
-                                  id="delivery-wednesday"
-                                />
-                                <label htmlFor="delivery-wednesday">
-                                  Wednesday, July 3 <p>$9.99 - Shipping</p>
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                        </div>
-                    ))}
-                </div>
-                <div className='payment-container1'>
-                <div className="payment-container">
-                            <p>items(0):</p>
-                            <p>Shipping & handling:</p>
-                            <p>Total before tax:</p>
-                            <p>Estimated tax (10%):</p>
+                              
                             
-                            <h1>Order total:() ${total}</h1>
+                          </div>
+                          <div className="delivery-options">
+                          <div class="delivery-options-title">
+                          Choose a delivery option:
+                          </div>
+                        
+                          </div>
+                              
+                  
+                            </div>
+                          </div>
+                        </div>
+                          ))}
+                </div>
+                <div className='payment-summary'>
+                <div className="payment-summary-title">
+                <div class="payment-summary-row">
+                  <div>Items ({cart.length}):</div>
+                  <div className="payment-summary-money">${total}</div>
+                </div>
+                <div class="payment-summary-row">
+                <div>Shipping &amp; handling:</div>
+                <div class="payment-summary-money">$0:00</div>
+                </div>
+                <div class="payment-summary-row subtotal-row">
+                <div>Total before tax:</div>
+                <div class="payment-summary-money">${total}</div>
+                </div>
+
+                <div class="payment-summary-row">
+                <div>Estimated tax (0%):</div>
+                <div class="payment-summary-money">0</div>
+                </div>
+                            
+                <div class="payment-summary-row total-row">
+                <div>Order total:</div>
+                <div class="payment-summary-money">${total}</div>
+                </div>
                            
                             <div className='paypal-div'>
-                            <button className='paypal-button'>
-                                <h5>PayPal</h5>
-                            </button>
+                            <div className='paypal-button'>
+                               <div>PayPal</div>
                             </div>
-                            <Link to="/paystack">
+                            </div>
+                            <Link className='underline' to="/paystack">
                             <div className='paystack-div'>
-                            <button onClick={handleCheckout} className='paystack-button'>
-                                <h5>paystack</h5>
-                            </button>
+                            <div onClick={handleCheckout} className='paystack-button'>
+                                <div>Paystack</div>
+                            </div>
                             </div>
                             </Link>
                       </div>
 
                       
                 </div>
-
             </div>
+            
+           </div>
 
-            
-            
-        </div>
+
+                
+        </div>  
     );
 }
 

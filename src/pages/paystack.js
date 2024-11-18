@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { PaystackButton } from 'react-paystack';
+import './paystack.css'
 
 function Paystack() {
     const location = useLocation();

@@ -1,23 +1,12 @@
+import React, { useState, useEffect } from 'react';
 import NavBar from "../components/NavBar";
-import { useEffect, useState } from "react";
 
 function Home() {
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState([]);
 
+    // Fetch products from API
     useEffect(() => {
-        fetchProducts();
-        const cartFromLocal = localStorage.getItem("cart");
-        if (cartFromLocal) {
-            setCart(JSON.parse(cartFromLocal));
-        }
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cart));
-    }, [cart]);
-
-    function fetchProducts() {
         fetch("https://dummyjson.com/products")
             .then((res) => res.json())
             .then((data) => {
@@ -32,23 +21,30 @@ function Home() {
                 console.error("Error fetching products:", error);
                 setProducts([]);
             });
-    }
+    }, []);
 
+    // Handle adding an item to the cart
     function addToCart(item) {
         setCart(prevCart => {
-            // Check if the item already exists in the cart
             const existingItem = prevCart.find(cartItem => cartItem.id === item.id);
-            if (existingItem) {
-                return prevCart; // Return previous cart if item already exists
-            }
+            if (existingItem) return prevCart;
             const updatedCart = [...prevCart, item];
-            return updatedCart; // Update state with new cart
+            localStorage.setItem('cart', JSON.stringify(updatedCart)); // Save to localStorage
+            return updatedCart;
         });
     }
 
+    // Load cart from localStorage when the component mounts
+    useEffect(() => {
+        const cartFromLocal = localStorage.getItem("cart");
+        if (cartFromLocal) {
+            setCart(JSON.parse(cartFromLocal));
+        }
+    }, []);
+
     return (
         <div>
-            <NavBar cart={cart.length} />
+            <NavBar cartLength={cart.length} />
             <div style={{ marginTop: '80px' }} className="container-fluid mt-10">
                 <div className="row">
                     {products.length > 0 ? (
